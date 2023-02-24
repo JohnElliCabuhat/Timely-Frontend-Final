@@ -1,0 +1,37 @@
+form{
+    background-color: #546E7A;
+    width: 60vw;
+    max-width: 500px;
+    min-width: 300px;
+    margin: 30px auto;
+    padding: 1em;
+    border-radius:5px;
+  }
+  
+  label {
+    display: block;
+    color: white;
+    font-family: sans-serif;
+    font-size: 20px;
+  }
+  
+  input{
+    min-height:2em;
+    width:100%;
+    margin-top:5px;
+    border-radius:5px;
+    padding:8px;
+    color: white;
+  }
+  
+  button{
+    display:block;
+    min-height:3em;
+    width: 100%;
+  }
+  
+  
+  .error-message{
+      color: #b81a1a;
+      font-family: sans-serif;
+  }

@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import './UserInfo.css';
-class UserInfo extends Component {
+import "./Signup.css";
+
+class Signup extends Component {
 
     state = {
-        id:0,
+        id: 0,
         name: "",
-        DOB: "",
         email: "",
         contact: "",
-        description: "",
         error: {
             nameError: "",
-            DOBError: "",
             emailError: "",
             contactError: "",
-            descriptionError: ""
         },
         formValid: false
     }
@@ -27,17 +24,11 @@ class UserInfo extends Component {
         if (e.target.id == "name") {
             this.validateName(e.target.value);
         }
-        else if (e.target.id == "DOB") {
-            this.validateDOB(e.target.value);
-        }
         else if (e.target.id == "email") {
             this.validateEmail(e.target.value);
         }
         else if (e.target.id == "contact") {
             this.validateContact(e.target.value);
-        }
-        else if (e.target.id == "description") {
-            this.validateDescription(e.target.value);
         }
 
     }
@@ -69,42 +60,6 @@ class UserInfo extends Component {
         )
 
         return formValid;
-    }
-
-    validateDOB = (DOB) => {
-        let formValid = this.state.formValid;
-        let DOBError = this.state.error.DOBError;
-        let currentDate = new Date().toJSON().slice(0, 10);
-        let pattern = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
-
-        if (DOB.trim() === "") {
-            formValid = false;
-            DOBError = "This field is required";
-        }
-        else if (!pattern.test(DOB)) {
-            formValid = false;
-            DOBError = "Follow the date format";
-        }
-
-        else if (DOB > currentDate) {
-            formValid = false;
-            DOBError = "Date cannot be greater than today's date";
-        }
-        else {
-            formValid = true;
-            DOBError = "";
-        }
-
-        this.setState(
-            {
-                DOB,
-                formValid,
-                error: { ...this.state.error, DOBError }
-            }
-        )
-
-        return formValid;
-
     }
 
     validateEmail = (email) => {
@@ -169,53 +124,15 @@ class UserInfo extends Component {
         return formValid;
     }
 
-    validateDescription = (description) => {
-        let formValid = this.state.formValid;
-        let descriptionError = this.state.error.descriptionError;
-
-        if (description.trim() === "") {
-            formValid = false;
-            descriptionError = "This field is required";
-        }
-        else {
-            formValid = true;
-            descriptionError = "";
-        }
-
-        this.setState(
-            {
-                description,
-                formValid,
-                error: { ...this.state.error, descriptionError }
-            }
-        )
-
-        return formValid;
-
-    }
-
     handleSubmit = (e) => {
         e.preventDefault();
         if (this.validateName(this.state.name) &&
-            this.validateDOB(this.state.DOB) &&
             this.validateEmail(this.state.email) &&
-            this.validateContact(this.state.contact) &&
-            this.validateDescription(this.state.description)) {
-            alert("Form submitted successfully");
-            this.props.addData(this.state);
-
-            this.setState({
-                id: this.state.id + 1,
-                name: "",
-                DOB: "",
-                email: "",
-                contact: "",
-                description:"",
-                formValid: false,
-            })
+            this.validateContact(this.state.contact)
+        ) {
+            M.toast({ html: 'Form Submitted Successfully' })
         }
     }
-
 
     render() {
         return (
@@ -224,23 +141,18 @@ class UserInfo extends Component {
                     <label>Name</label>
                     <input type="text" placeholder='Enter your name' id='name' onChange={this.handleChange} value={this.state.name} />
                     <p className='error-message'>{this.state.error.nameError}</p>
-                    <label>Date Of Birth</label>
-                    <input type="text" placeholder='Enter your Birthdate (YYYY-MM-DD)' id='DOB' onChange={this.handleChange} value={this.state.DOB} />
-                    <p className='error-message'>{this.state.error.DOBError}</p>
                     <label>Email</label>
                     <input type="text" placeholder='Enter your Email' id='email' onChange={this.handleChange} value={this.state.email} />
                     <p className='error-message'>{this.state.error.emailError}</p>
                     <label>Contact Number</label>
                     <input type="text" placeholder='Enter your Contact Number' id='contact' onChange={this.handleChange} value={this.state.contact} />
                     <p className='error-message'>{this.state.error.contactError}</p>
-                    <label>Tell Me About Yourself</label>
-                    <input type="text" placeholder='Enter here' id='description' onChange={this.handleChange} value={this.state.description} />
-                    <p className='error-message'>{this.state.error.descriptionError}</p>
-                    <button>Submit</button>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    </button>
                 </form>
             </div>
         );
     }
 }
 
-export default UserInfo;
+export default Signup;

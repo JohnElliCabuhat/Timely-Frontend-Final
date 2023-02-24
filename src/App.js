@@ -1,29 +1,11 @@
 import React, { Component } from 'react';
-import UserInfo from './UserInfo';
-import CardTemplate from './CardTemplate';
-import NavBarTemp from './NavBarTemp';
+import Router from './Router';
 
 class App extends Component {
-  state = {
-    userData: []
-  }
-
-  addInfo = (props) => {
-    console.log(props);
-
-    let userData = [...this.state.userData, props];
-
-    this.setState({
-      userData
-    })
-  }
-
   render() {
     return (
       <div>
-        <NavBarTemp />
-        <UserInfo addData = {this.addInfo} />
-        <CardTemplate userData ={this.state.userData} />
+        <Router />
       </div>
     );
   }
