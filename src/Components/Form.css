@@ -24,7 +24,7 @@ form{
     color: white;
   }
   
-  button{
+  button.btn{
     display:block;
     min-height:3em;
     width: 100%;

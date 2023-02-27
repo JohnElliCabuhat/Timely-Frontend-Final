@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import About from './Components/About';
-import Contact from './Components/Contact';
-import Home from './Components/Home';
+import FunctionalComp from './Components/FunctionalComp';
+import Hooks from './Components/Hooks';
+import Lodash from './Components/Lodash';
 import NavBar from './Components/NavBar';
-import Post from './Components/Post';
-import Signup from './Components/Signup';
+import RandomMain from './Components/RandomMain';
+
 
 const Router = () => {
     return (
@@ -13,12 +13,11 @@ const Router = () => {
             <BrowserRouter>
                 <NavBar />
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/home/:post_id" element={<Post />} />
+                    <Route path="/" element={<RandomMain />} />
+                    <Route path="/randommain" element={<RandomMain />} />
+                    <Route path="/hooks" element={<Hooks />} />
+                    <Route path="/functionalcomp" element={<FunctionalComp />} />
+                    <Route path="/lodash" element={<Lodash />} />
                 </Routes>
             </BrowserRouter>
         </div>

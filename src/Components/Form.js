@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import "./Signup.css";
+import "./Form.css";
 
-class Signup extends Component {
+class Form extends Component {
 
     state = {
         id: 0,
@@ -130,7 +130,16 @@ class Signup extends Component {
             this.validateEmail(this.state.email) &&
             this.validateContact(this.state.contact)
         ) {
-            M.toast({ html: 'Form Submitted Successfully' })
+            M.toast({ html: 'User Updated Successfully' })
+            this.props.addData(this.state);
+
+            this.setState({
+                id: this.state.id,
+                name: "",
+                email: "",
+                contact: "",
+                formValid: false,
+            })
         }
     }
 
@@ -147,7 +156,7 @@ class Signup extends Component {
                     <label>Contact Number</label>
                     <input type="text" placeholder='Enter your Contact Number' id='contact' onChange={this.handleChange} value={this.state.contact} />
                     <p className='error-message'>{this.state.error.contactError}</p>
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <button className="btn waves-effect waves-light" type="submit" name="action">Update
                     </button>
                 </form>
             </div>
@@ -155,4 +164,4 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
+export default Form;

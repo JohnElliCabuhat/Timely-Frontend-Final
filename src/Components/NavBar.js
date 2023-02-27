@@ -7,16 +7,16 @@ const NavBar = () => {
                 <div className="nav-wrapper">
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li>
-                            <Link to="/home">Home</Link>
+                            <Link to="/randommain">Random</Link>
                         </li>
                         <li>
-                            <Link to="/contact">Contact</Link>
+                            <Link to="/hooks">Hooks</Link>
                         </li>
                         <li>
-                            <Link to="/about">About</Link>
+                            <Link to="/functionalcomp">Functional Component</Link>
                         </li>
                         <li>
-                            <Link to="/signup">Signup</Link>
+                            <Link to="/lodash">Lodash</Link>
                         </li>
                     </ul>
                 </div>
