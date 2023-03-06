@@ -40,7 +40,7 @@ module.exports = {
     ],
   },
 
-  resolve: {
-    fallback: { fs: false, crypto: false },
-  },
+  // resolve: {
+  //   fallback: { fs: false, crypto: false },
+  // },
 };
