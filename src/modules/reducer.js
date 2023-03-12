@@ -1,27 +1,29 @@
 import * as actions from "./actionType";
 
 const initState = {
-  userScore: [],
-  scoreApi: [],
+  flightApi: [],
+  setModal: false,
 };
 
 const reducer = (state = initState, action) => {
   console.log(action.payload);
   switch (action.type) {
-    case actions.GET_DATA:
-      return {
-        ...state,
-        userScore: [...state.userScore, action.payload],
-      };
-    case actions.DELETE_DATA:
-      return {
-        ...state,
-        userScore: state.userScore.filter((val) => val.id != action.payload),
-      };
     case actions.GET_API:
       return {
         ...state,
-        scoreApi: action.payload.httpResponse,
+        flightApi: action.payload.httpResponse,
+      };
+    case actions.ADD_API:
+      return {
+        ...state,
+        flightApi: [...state.flightApi, action.payload],
+      };
+    case actions.DEL_API:
+      return {
+        ...state,
+        flightApi: state.flightApi.filter(
+          (val) => val.flightNo != action.payload
+        ),
       };
     default:
       return state;

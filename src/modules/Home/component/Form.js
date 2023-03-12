@@ -1,16 +1,23 @@
 import React, { Component } from "react";
-import { onGetData } from "../../actions";
+import { onAddApi } from "../../actions";
 import { connect } from "react-redux";
 import "./Form.css";
 
 class Form extends Component {
   state = {
-    id: 0,
-    name: "",
-    score: "",
+    flightNo: "",
+    fromAirport: "",
+    toAirport: "",
+    depTime: "",
+    arrTime: "",
+    routeNo: "",
     error: {
-      nameError: "",
-      scoreError: "",
+      flightNoError: "",
+      fromAirportError: "",
+      toAirportError: "",
+      depTimeError: "",
+      arrTimeError: "",
+      routeNoError: "",
     },
     formValid: false,
   };
@@ -20,58 +27,155 @@ class Form extends Component {
     console.log(e.target.value);
     console.log(e.target.id);
 
-    if (e.target.id == "name") {
-      this.validateName(e.target.value);
-    } else if (e.target.id == "score") {
-      this.validatescore(e.target.value);
+    if (e.target.id == "flightNo") {
+      this.validateFlightNo(e.target.value);
+    } else if (e.target.id == "fromAirport") {
+      this.validateFromAirport(e.target.value);
+    } else if (e.target.id == "toAirport") {
+      this.validateToAirport(e.target.value);
+    } else if (e.target.id == "depTime") {
+      this.validateDepTime(e.target.value);
+    } else if (e.target.id == "arrTime") {
+      this.validateArrTime(e.target.value);
+    } else if (e.target.id == "routeNo") {
+      this.validateRouteNo(e.target.value);
     }
   };
 
-  validateName = (name) => {
+  validateFlightNo = (flightNo) => {
     let formValid = this.state.formValid;
-    let nameError = this.state.error.nameError;
-    let pattern = /^([a-zA-Z\s])+$/;
+    let flightNoError = this.state.error.flightNoError;
+    // let pattern = /^([a-zA-Z\s])+$/;
 
-    if (name.trim() === "") {
+    if (flightNo.trim() === "") {
       formValid = false;
       nameError = "This field is required";
-    } else if (!pattern.test(name)) {
-      formValid = false;
-      nameError = "Do not input numbers";
     } else {
       formValid = true;
-      nameError = "";
+      flightNoError = "";
     }
 
     this.setState({
-      name,
+      flightNo,
       formValid,
-      error: { ...this.state.error, nameError },
+      error: { ...this.state.error, flightNoError },
     });
 
     return formValid;
   };
 
-  validatescore = (score) => {
+  validateFromAirport = (fromAirport) => {
     let formValid = this.state.formValid;
-    let scoreError = this.state.error.scoreError;
-    let pattern = /^([0-9\s])+$/;
+    let fromAirportError = this.state.error.fromAirportError;
 
-    if (score.trim() === "") {
+    if (fromAirport.trim() === "") {
       formValid = false;
-      scoreError = "This field is required";
-    } else if (!pattern.test(score)) {
-      formValid = false;
-      scoreError = "Invalid Input";
+      fromAirportError = "This field is required";
     } else {
       formValid = true;
-      scoreError = "";
+      fromAirportError = "";
     }
 
     this.setState({
-      score,
+      fromAirport,
       formValid,
-      error: { ...this.state.error, scoreError },
+      error: { ...this.state.error, fromAirportError },
+    });
+
+    return formValid;
+  };
+
+  validateToAirport = (toAirport) => {
+    let formValid = this.state.formValid;
+    let toAirportError = this.state.error.toAirportError;
+
+    if (toAirport.trim() === "") {
+      formValid = false;
+      toAirportError = "This field is required";
+    } else {
+      formValid = true;
+      toAirportError = "";
+    }
+
+    this.setState({
+      toAirport,
+      formValid,
+      error: { ...this.state.error, toAirportError },
+    });
+
+    return formValid;
+  };
+
+  validateDepTime = (depTime) => {
+    let formValid = this.state.formValid;
+    let depTimeError = this.state.error.toAirportError;
+    let pattern = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(?:\.\d+)?Z?/;
+
+    if (depTime.trim() === "") {
+      formValid = false;
+      depTimeError = "This field is required";
+    } else if (!pattern.test(depTime)) {
+      formValid = false;
+      depTimeError = "Follow the format(yyyy-mm-ddThh:mm:ss)";
+    } else {
+      formValid = true;
+      depTimeError = "";
+    }
+
+    this.setState({
+      depTime,
+      formValid,
+      error: { ...this.state.error, depTimeError },
+    });
+
+    return formValid;
+  };
+
+  validateArrTime = (arrTime) => {
+    let formValid = this.state.formValid;
+    let arrTimeError = this.state.error.arrTimeError;
+    let pattern = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(?:\.\d+)?Z?/;
+
+    if (arrTime.trim() === "") {
+      formValid = false;
+      arrTimeError = "This field is required";
+    } else if (!pattern.test(arrTime)) {
+      formValid = false;
+      arrTimeError = "Follow the format(yyyy-mm-ddThh:mm:ss)";
+    } else {
+      formValid = true;
+      arrTimeError = "";
+    }
+
+    this.setState({
+      arrTime,
+      formValid,
+      error: { ...this.state.error, arrTimeError },
+    });
+
+    return formValid;
+  };
+
+  validateRouteNo = (routeNo) => {
+    let formValid = this.state.formValid;
+    let routeNoError = this.state.error.routeNoError;
+    let pattern = /^([0-9\s])+$/;
+
+    if (routeNo.trim() === "") {
+      formValid = false;
+      routeNoError = "This field is required";
+    } else if (!pattern.test(routeNo)) {
+      formValid = false;
+      routeNoError = "Invalid Input";
+    } else {
+      formValid = true;
+      routeNoError = "";
+    }
+
+    this.setState({
+      routeNo,
+      formValid,
+      error: { ...this.state.error, routeNoError },
     });
 
     return formValid;
@@ -80,19 +184,29 @@ class Form extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (
-      this.validateName(this.state.name) &&
-      this.validatescore(this.state.score)
+      this.validateFlightNo(this.state.flightNo) &&
+      this.validateFromAirport(this.state.fromAirport) &&
+      this.validateToAirport(this.state.toAirport) &&
+      this.validateDepTime(this.state.depTime) &&
+      this.validateArrTime(this.state.arrTime) &&
+      this.validateRouteNo(this.state.routeNo)
     ) {
-      this.props.onGetData({
-        id: this.state.id,
-        name: this.state.name,
-        score: this.state.score,
+      this.props.onAddApi({
+        flightNo: this.state.flightNo,
+        fromAirport: this.state.fromAirport,
+        toAirport: this.state.toAirport,
+        depTime: this.state.depTime,
+        arrTime: this.state.arrTime,
+        routeNo: this.state.routeNo,
       });
-      alert("Score added successfully");
+      alert("Flight details added successfully");
       this.setState({
-        id: this.state.id + 1,
-        name: "",
-        score: "",
+        flightNo: "",
+        fromAirport: "",
+        toAirport: "",
+        depTime: "",
+        arrTime: "",
+        routeNo: "",
       });
     }
   };
@@ -101,24 +215,60 @@ class Form extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label>Name</label>
+          <label>Flight No</label>
           <input
             type="text"
-            placeholder="Enter Player Name"
-            id="name"
+            placeholder="Enter Flight Number"
+            id="flightNo"
             onChange={this.handleChange}
-            value={this.state.name}
+            value={this.state.flightNo}
           />
-          <p className="error-message">{this.state.error.nameError}</p>
-          <label>Score</label>
+          <p className="error-message">{this.state.error.flightNoError}</p>
+          <label>From Airport</label>
           <input
             type="text"
-            placeholder="Enter score"
-            id="score"
+            placeholder="Enter From Airport"
+            id="fromAirport"
             onChange={this.handleChange}
-            value={this.state.score}
+            value={this.state.fromAirport}
           />
-          <p className="error-message">{this.state.error.scoreError}</p>
+          <p className="error-message">{this.state.error.fromAirportError}</p>
+          <label>To Airport</label>
+          <input
+            type="text"
+            placeholder="Enter To Airport"
+            id="toAirport"
+            onChange={this.handleChange}
+            value={this.state.toAirport}
+          />
+          <p className="error-message">{this.state.error.toAirportError}</p>
+          <label>Departure Time</label>
+          <input
+            type="text"
+            placeholder="Enter Departure Time(yyyy-mm-ddThh-mm-ss)"
+            id="depTime"
+            onChange={this.handleChange}
+            value={this.state.depTime}
+          />
+          <p className="error-message">{this.state.error.depTimeError}</p>
+          <label>Arrival Time</label>
+          <input
+            type="text"
+            placeholder="Enter Arrival Time(yyyy-mm-ddThh-mm-ss)"
+            id="arrTime"
+            onChange={this.handleChange}
+            value={this.state.arrTime}
+          />
+          <p className="error-message">{this.state.error.arrTimeError}</p>
+          <label>Route No</label>
+          <input
+            type="text"
+            placeholder="Enter Route No"
+            id="routeNo"
+            onChange={this.handleChange}
+            value={this.state.routeNo}
+          />
+          <p className="error-message">{this.state.error.routeNoError}</p>
           <button
             class="btn waves-effect waves-light"
             type="submit"
@@ -134,7 +284,7 @@ class Form extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetData: (data) => dispatch(onGetData(data)),
+    onAddApi: (flight) => dispatch(onAddApi(flight)),
   };
 };
 
