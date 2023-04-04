@@ -1,30 +1,41 @@
 import * as actions from "./actionType";
 
 const initState = {
-  flightApi: [],
-  setModal: false,
+  EmployeeApi: [],
+  TimesheetApi: [],
+  EventsApi: [],
+  BlogsApi: [],
+  UpdateTimesheetApi:[],
 };
 
 const reducer = (state = initState, action) => {
   console.log(action.payload);
   switch (action.type) {
-    case actions.GET_API:
+    case actions.GET_EMP:
       return {
         ...state,
-        flightApi: action.payload.httpResponse,
+        EmployeeApi: action.payload.httpResponse,
       };
-    case actions.ADD_API:
+    case actions.GET_TMS:
       return {
         ...state,
-        flightApi: [...state.flightApi, action.payload],
+        TimesheetApi: action.payload.httpResponse,
       };
-    case actions.DEL_API:
+    case actions.GET_EVT:
       return {
         ...state,
-        flightApi: state.flightApi.filter(
-          (val) => val.flightNo != action.payload
-        ),
+        EventsApi: action.payload.httpResponse,
       };
+      case actions.GET_BLG:
+        return {
+          ...state,
+          BlogsApi: action.payload.httpResponse,
+        };
+        case actions.UPT_TMS:
+          return {
+            ...state,
+            UpdateTimesheetApi: action.payload.httpResponse
+          }
     default:
       return state;
   }

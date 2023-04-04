@@ -1,21 +1,21 @@
 import * as actions from "./actionType";
 import axios from "axios";
 
-
-export const onGetApi = () => {
+export const onGetEmp = () => {
   const options = {
     method: "GET",
-    url: "https://localhost:7204/api/flights/GetAllFlights",
+    url: "https://localhost:7073/api/capstone/GetEmployees",
   };
 
   return (dispatch) => {
     axios
       .request(options)
       .then((res) => {
+        console.log(res);
         dispatch(
           ((data) => {
             return {
-              type: actions.GET_API,
+              type: actions.GET_EMP,
               payload: { httpResponse: data },
             };
           })(res.data)
@@ -27,20 +27,21 @@ export const onGetApi = () => {
   };
 };
 
-export const onAddApi = (flight) => {
+export const onGetTms = () => {
+  const options = {
+    method: "GET",
+    url: "https://localhost:7073/api/capstone/GetTimesheets",
+  };
 
   return (dispatch) => {
     axios
-      .post("https://localhost:7204/api/flights/AddFlight", flight)
+      .request(options)
       .then((res) => {
-        dispatch(
-          ((data) => {
-            return {
-              type: actions.ADD_API,
-              payload: { httpResponse: data },
-            };
-          })(res.data)
-        );
+        console.log(res);
+        dispatch({
+          type: actions.GET_TMS,
+          payload: { httpResponse: res.data },
+        });
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -48,29 +49,64 @@ export const onAddApi = (flight) => {
   };
 };
 
-export const onDelApi = (flightNo) => {
-  axios
-    .delete(`https://localhost:7204/api/flights/DeleteFlights?FlightNo=${flightNo}`)
-    .then((res) => {
-      if (res.status === 200) {
-        alert("Flight details has been deleted.");
-      }
-    })
-    .catch((error) => {
-      alert(error);
-    });
-  return {
-    type: actions.DEL_API,
-    payload: flightNo,
+export const onGetEvt = () => {
+  const options = {
+    method: "GET",
+    url: "https://localhost:7073/api/capstone/GetEvents",
+  };
+
+  return (dispatch) => {
+    axios
+      .request(options)
+      .then((res) => {
+        dispatch({
+          type: actions.GET_EVT,
+          payload: { httpResponse: res.data },
+        });
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
   };
 };
 
-// export const onUptApi = (flightNo) => {
-//   // axios.get(`https://localhost:7204/api/flights/UpdateFlight/${flightNo}`)
-//   // .then((res) => {
-//   //   setData
-//   // })
-//   // return (dispatch) => {
-//   //   axios.put("https://localhost:7204/api/flights/UpdateFlight", flightNo);
-//   // };
-// };
+export const onGetBlg = () => {
+  const options = {
+    method: "GET",
+    url: "https://localhost:7073/api/capstone/GetBlogs",
+  };
+
+  return (dispatch) => {
+    axios
+      .request(options)
+      .then((res) => {
+        dispatch({
+          type: actions.GET_BLG,
+          payload: { httpResponse: res.data },
+        });
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  };
+};
+
+export const onUptTms = (id, status) => {
+  return (dispatch) => {
+    axios
+      .put(
+        `https://localhost:7073/api/capstone/UpdateTimesheets/?id=${id}&status=${status}`
+      )
+      .then((res) => {
+        dispatch({
+          type: actions.UPT_TMS,
+          payload: { httpResponse: res.data },
+        });
+
+        dispatch(onGetTms());
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  };
+};
