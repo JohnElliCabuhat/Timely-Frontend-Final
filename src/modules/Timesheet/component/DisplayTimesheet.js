@@ -19,36 +19,25 @@ import DisplayModalTm from "./DisplayModalTm";
 const DisplayTimesheet = () => {
   const timesheets = useSelector((state) => state.TimesheetApi);
   console.log(timesheets);
-  
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(onGetTms());
   }, []);
 
   const handleValidate = (id, value) => {
-    
     if (value == "Approved") {
       dispatch(onSetModalTm(true));
-      dispatch(onSetStatus({tid:id, status:value}));
-    }
-    else if (value == "Rejected"){
+      dispatch(onSetStatus({ tid: id, status: value }));
+    } else if (value == "Rejected") {
       dispatch(onSetModalTm(true));
-      dispatch(onSetStatus({tid:id, status:value}));
+      dispatch(onSetStatus({ tid: id, status: value }));
     }
   };
 
   return (
     <div style={{ marginLeft: 100 }}>
-      {timesheets.map((tm) => {
-        return(
-          <div key={tm.tid}>
-            <p>{tm.timesheetId}</p>
-            <p>{tm.startDate}</p>
-            <p>{tm.endDate}</p>
-          </div>
-        )
-      })}
-      {/* <TableContainer component={Paper}>
+      <TableContainer component={Paper}>
         <Table sx={{ minWidth: 900 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -62,55 +51,61 @@ const DisplayTimesheet = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {timesheets.length ? (timesheets.map((timesheet) => (
-              <TableRow
-                key={timesheet.tid}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {timesheet.timesheetId}
-                </TableCell>
-                <TableCell align="center">
-                  {new Date(timesheet.startDate).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </TableCell>
-                <TableCell align="center">
-                  {new Date(timesheet.endDate).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </TableCell>
-                <TableCell align="center">{timesheet.employeeName}</TableCell>
-                <TableCell align="center">{timesheet.projectName}</TableCell>
-                <TableCell align="center">{timesheet.status}</TableCell>
-                <TableCell align="center">
-                  <FormControl sx={{ m: 1, minWidth: 100 }}>
-                    <Select
-                      value={timesheet.status}
-                      onChange={(event) => handleValidate(timesheet.tid, event.target.value)}
-                      disabled={
-                        timesheet.status === "Approved" ||
-                        timesheet.status === "Rejected"
-                      }
-                      displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
-                    >
-                      <MenuItem value={"Pending"}>Pending</MenuItem>
-                      <MenuItem value={"Approved"}>Approved</MenuItem>
-                      <MenuItem value={"Rejected"}>Rejected</MenuItem>
-                    </Select>
-                  </FormControl>
-                </TableCell>
-              </TableRow>
-            ))):(<>No data</>)}
+            {timesheets.length ? (
+              timesheets.map((timesheet) => (
+                <TableRow
+                  key={timesheet.tid}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {timesheet.timesheetId}
+                  </TableCell>
+                  <TableCell align="center">
+                    {new Date(timesheet.startDate).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </TableCell>
+                  <TableCell align="center">
+                    {new Date(timesheet.endDate).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </TableCell>
+                  <TableCell align="center">{timesheet.employeeName}</TableCell>
+                  <TableCell align="center">{timesheet.projectName}</TableCell>
+                  <TableCell align="center">{timesheet.status}</TableCell>
+                  <TableCell align="center">
+                    <FormControl sx={{ m: 1, minWidth: 100 }}>
+                      <Select
+                        value={timesheet.status}
+                        onChange={(event) =>
+                          handleValidate(timesheet.tid, event.target.value)
+                        }
+                        disabled={
+                          timesheet.status === "Approved" ||
+                          timesheet.status === "Rejected"
+                        }
+                        displayEmpty
+                        inputProps={{ "aria-label": "Without label" }}
+                      >
+                        <MenuItem value={"Pending"}>Pending</MenuItem>
+                        <MenuItem value={"Approved"}>Approved</MenuItem>
+                        <MenuItem value={"Rejected"}>Rejected</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <>No data</>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
-      <DisplayModalTm /> */}
+      <DisplayModalTm />
     </div>
   );
 };
