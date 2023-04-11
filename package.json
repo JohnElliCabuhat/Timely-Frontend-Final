@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "webpack serve --mode development",
-    "build": "webpack --mode NODE_ENV",
+    "build": "webpack --mode production",
     "test": "jest"
   },
   "keywords": [],
