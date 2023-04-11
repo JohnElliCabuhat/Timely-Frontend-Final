@@ -11,6 +11,7 @@ let BASE_URL_ENV = "https://elli-capstone-backend-uat.azurewebsites.net";
 //   BASE_URL_ENV = "https://elli-capstone-backend-prod.azurewebsites.net";
 // }
 
+console.log(process.env.NODE_ENV);
 export const onGetEmp = () => {
   return async (dispatch) => {
     try {
