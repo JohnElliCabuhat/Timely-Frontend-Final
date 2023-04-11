@@ -1,10 +1,26 @@
 import * as actions from "./actionType";
 import axios from "axios";
 
+let BASE_URL_ENV = '';
+
+if (process.env.NODE_ENV === 'development') {
+
+ BASE_URL_ENV = 'https://localhost:7208/api/';
+
+} else if (process.env.NODE_ENV === 'uat') {
+
+BASE_URL_ENV = 'elli-capstone-frontend-uat.azurewebsites.net/api/capstone';
+
+} else if (process.env.NODE_ENV === 'prod') {
+
+BASE_URL_ENV = 'elli-capstone-frontend-prod.azurewebsites.net/api/capstone';
+
+}
+
 export const onGetEmp = () => {
   const options = {
     method: "GET",
-    url: "https://localhost:7073/api/capstone/GetEmployees",
+    url: `${BASE_URL_ENV}/GetEmployees`,
   };
 
   return (dispatch) => {
@@ -25,7 +41,7 @@ export const onGetEmp = () => {
 export const onGetTms = () => {
   const options =  {
     method: "GET",
-    url: "https://localhost:7073/api/capstone/GetTimesheets",
+    url: `${BASE_URL_ENV}/GetTimesheets`,
   };
 
   return (dispatch) => {
@@ -46,7 +62,7 @@ export const onGetTms = () => {
 export const onGetEvt = () => {
   const options = {
     method: "GET",
-    url: "https://localhost:7073/api/capstone/GetEvents",
+    url: `${BASE_URL_ENV}/GetEvents`,
   };
 
   return (dispatch) => {
@@ -67,7 +83,7 @@ export const onGetEvt = () => {
 export const onGetBlg = () => {
   const options = {
     method: "GET",
-    url: "https://localhost:7073/api/capstone/GetBlogs",
+    url: `${BASE_URL_ENV}/GetBlogs`,
   };
 
   return (dispatch) => {
@@ -89,7 +105,7 @@ export const onUptTms = (id, status) => {
   return (dispatch) => {
     axios
       .put(
-        `https://localhost:7073/api/capstone/UpdateTimesheets/?id=${id}&status=${status}`
+        `${BASE_URL_ENV}/UpdateTimesheets/?id=${id}&status=${status}`
       )
       .then((res) => {
         dispatch({
