@@ -5,22 +5,22 @@ let BASE_URL_ENV = '';
 
 if (process.env.NODE_ENV === 'development') {
 
- BASE_URL_ENV = 'https://localhost:7073/api/capstone';
+ BASE_URL_ENV = 'https://localhost:7073';
 
 } else if (process.env.NODE_ENV === 'uat') {
 
-BASE_URL_ENV = 'https://elli-capstone-backend-uat.azurewebsites.net/api/capstone';
+BASE_URL_ENV = 'https://elli-capstone-backend-uat.azurewebsites.net';
 
 } else if (process.env.NODE_ENV === 'prod') {
 
-BASE_URL_ENV = 'https://elli-capstone-backend-prod.azurewebsites.net/api/capstone';
+BASE_URL_ENV = 'https://elli-capstone-backend-prod.azurewebsites.net';
 
 }
 
 export const onGetEmp = () => {
   const options = {
     method: "GET",
-    url: `${BASE_URL_ENV}/GetEmployees`,
+    url: `${BASE_URL_ENV}/api/capstone/GetEmployees`,
   };
 
   return (dispatch) => {
@@ -41,7 +41,7 @@ export const onGetEmp = () => {
 export const onGetTms = () => {
   const options =  {
     method: "GET",
-    url: `${BASE_URL_ENV}/GetTimesheets`,
+    url: `${BASE_URL_ENV}/api/capstone/GetTimesheets`,
   };
 
   return (dispatch) => {
@@ -52,7 +52,6 @@ export const onGetTms = () => {
           type: actions.GET_TMS,
           payload: { httpResponse: res.data },
         });
-        console.log(res);
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -63,7 +62,7 @@ export const onGetTms = () => {
 export const onGetEvt = () => {
   const options = {
     method: "GET",
-    url: `${BASE_URL_ENV}/GetEvents`,
+    url: `${BASE_URL_ENV}/api/capstone/GetEvents`,
   };
 
   return (dispatch) => {
@@ -84,7 +83,7 @@ export const onGetEvt = () => {
 export const onGetBlg = () => {
   const options = {
     method: "GET",
-    url: `${BASE_URL_ENV}/GetBlogs`,
+    url: `${BASE_URL_ENV}/api/capstone/GetBlogs`,
   };
 
   return (dispatch) => {
@@ -106,7 +105,7 @@ export const onUptTms = (id, status) => {
   return (dispatch) => {
     axios
       .put(
-        `${BASE_URL_ENV}/UpdateTimesheets/?id=${id}&status=${status}`
+        `${BASE_URL_ENV}/api/capstone/UpdateTimesheets/?id=${id}&status=${status}`
       )
       .then((res) => {
         dispatch({

@@ -36,7 +36,6 @@ const DisplayTimesheet = () => {
     }
   };
 
-  console.log(timesheets);
   return (
     <div style={{ marginLeft: 100 }}>
       <TableContainer component={Paper}>
