@@ -20,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const DisplayBlogs = () => {
-  const blogs = useSelector((state) => state.BlogsApi);
+  const blogs = useSelector(state => state.BlogsApi);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(onGetBlg());

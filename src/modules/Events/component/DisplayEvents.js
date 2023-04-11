@@ -20,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const DisplayEvents = () => {
-  const events = useSelector((state) => state.EventsApi);
+  const events = useSelector(state => state.EventsApi);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(onGetEvt());

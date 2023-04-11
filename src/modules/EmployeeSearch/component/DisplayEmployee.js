@@ -30,7 +30,7 @@ const Item = styledGrid(Paper)(({ theme }) => ({
 
 const DisplayEmployee = () => {
   const [name, setName] = useState("");
-  const employees = useSelector((state) => state.EmployeeApi);
+  const employees = useSelector(state => state.EmployeeApi);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(onGetEmp());
