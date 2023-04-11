@@ -30,7 +30,7 @@ const DisplayEvents = () => {
     <div>
       <Box sx={{ width: "100%", marginLeft: 10 }}>
         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {events.map((evt) => (
+          {events.length ? (events.map((evt) => (
             <Grid item xs={6} key={evt.evid}>
               <Item>
                 <Card sx={{ width: "100%" }}>
@@ -75,7 +75,7 @@ const DisplayEvents = () => {
                 </Card>
               </Item>
             </Grid>
-          ))}
+          ))) : (<>No Data</>)}
         </Grid>
       </Box>
     </div>

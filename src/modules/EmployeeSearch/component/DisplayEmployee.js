@@ -57,7 +57,7 @@ const DisplayEmployee = () => {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {employees.filter(searchEmp(name)).map((emp) => (
+          {employees.length ? (employees.filter(searchEmp(name)).map((emp) => (
             <Grid item xs={2} sm={4} md={4} key={emp.eid}>
               <Item>
                 <Card>
@@ -89,7 +89,7 @@ const DisplayEmployee = () => {
                 </Card>
               </Item>
             </Grid>
-          ))}
+          ))) : (<>No Data</>)}
         </Grid>
       </Box>
     </div>

@@ -26,25 +26,11 @@ const DisplayBlogs = () => {
     dispatch(onGetBlg());
   }, []);
 
-  // const blogList = blogs.length ? (
-  //   blogs.map((blog) => {
-  //     return (
-  //       <div key={blog.bid}>
-  //         <p>Blog Title: {blog.blogTitle}</p>
-  //         <p>Blog Description: {blog.blogDescription}</p>
-  //         <img src={blog.blogImage} />
-  //         <hr></hr>
-  //       </div>
-  //     );
-  //   })
-  // ) : (
-  //   <p>No post yet</p>
-  // );
   return (
     <div>
       <Box sx={{ width: "100%", marginLeft: 10 }}>
         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {blogs.map((blg) => (
+          {blogs.length ? (blogs.map((blg) => (
             <Grid item xs={6} key={blg.bid}>
               <Item>
                 <Card sx={{ width: "100%" }}>
@@ -63,13 +49,6 @@ const DisplayBlogs = () => {
                       <Typography gutterBottom variant="h5" component="div">
                         {blg.blogTitle}
                       </Typography>
-                      {/* <p style={{ textAlign: "justify" }}>
-                        {new Date(evt.eventDate).toLocaleDateString("en-US", {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </p> */}
                       <Typography variant="body2" color="text.secondary">
                         {blg.blogDescription}
                       </Typography>
@@ -78,10 +57,9 @@ const DisplayBlogs = () => {
                 </Card>
               </Item>
             </Grid>
-          ))}
+          ))) : (<>No Data</>)}
         </Grid>
       </Box>
-      {/* {blogList} */}
     </div>
   );
 };

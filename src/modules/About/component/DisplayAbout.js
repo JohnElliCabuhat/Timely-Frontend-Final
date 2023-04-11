@@ -69,7 +69,7 @@ const DisplayAbout = () => {
                 <Card sx={{ width: "100%" }}>
                   <CardMedia
                     sx={{ height: 400 }}
-                    image={images.COOPicture}
+                    image={images.CooPicture}
                     title="COO Picture"
                   />
                   <CardContent>

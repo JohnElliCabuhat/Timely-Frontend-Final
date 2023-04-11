@@ -1,4 +1,5 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
@@ -46,5 +47,7 @@ module.exports = {
     extensions: ['', '.js', '.jsx', 'css'],
     fallback: { fs: false, crypto: false },
   },
-  plugins: [new CopyWebpackPlugin({ patterns: [{ from: './web.config', to: '' }] }),]
+  plugins: [new HtmlWebpackPlugin({
+    template: 'src/index.html',
+  }),new CopyWebpackPlugin({ patterns: [{ from: './web.config', to: '' }] }),]
 };
