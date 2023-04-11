@@ -20,7 +20,7 @@ export const onGetEmp = () => {
         url: `${BASE_URL_ENV}/api/capstone/GetEmployees`,
       };
 
-      const res = await axios.get(options);
+      const res = await axios.request(options);
       console.log(res.data);
       dispatch({
         type: actions.GET_EMP,
@@ -59,7 +59,7 @@ export const onGetEvt = () => {
         url: `${BASE_URL_ENV}/api/capstone/GetEvents`,
       };
 
-      const res = await axios.get(options);
+      const res = await axios.request(options);
       dispatch({
         type: actions.GET_EVT,
         payload: { httpResponse: res.data },
@@ -78,7 +78,7 @@ export const onGetBlg = () => {
         url: `${BASE_URL_ENV}/api/capstone/GetBlogs`,
       };
 
-      const res = await axios.get(options);
+      const res = await axios.request(options);
       dispatch({
         type: actions.GET_BLG,
         payload: { httpResponse: res.data },
