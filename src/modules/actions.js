@@ -5,15 +5,15 @@ let BASE_URL_ENV = '';
 
 if (process.env.NODE_ENV === 'development') {
 
- BASE_URL_ENV = 'https://localhost:7208/api/';
+ BASE_URL_ENV = 'https://localhost:7208/api/capstone';
 
 } else if (process.env.NODE_ENV === 'uat') {
 
-BASE_URL_ENV = 'elli-capstone-frontend-uat.azurewebsites.net/api/capstone';
+BASE_URL_ENV = 'https://elli-capstone-frontend-uat.azurewebsites.net/api/capstone';
 
 } else if (process.env.NODE_ENV === 'prod') {
 
-BASE_URL_ENV = 'elli-capstone-frontend-prod.azurewebsites.net/api/capstone';
+BASE_URL_ENV = 'https://elli-capstone-frontend-prod.azurewebsites.net/api/capstone';
 
 }
 
