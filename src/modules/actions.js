@@ -39,23 +39,22 @@ export const onGetEmp = () => {
 };
 
 export const onGetTms = () => {
-  const options =  {
-    method: "GET",
-    url: `${BASE_URL_ENV}/api/capstone/GetTimesheets`,
-  };
+ 
+  return async (dispatch) => {
+    try{
+      const options =  {
+        method: "GET",
+        url: `${BASE_URL_ENV}/api/capstone/GetTimesheets`,
+      };
 
-  return (dispatch) => {
-    axios
-      .request(options)
-      .then((res) => {
-        dispatch({
-          type: actions.GET_TMS,
-          payload: { httpResponse: res.data },
-        });
-      })
-      .catch((err) => {
-        console.error("Error:", err);
+      const res = await axios.request(options);
+      dispatch({
+        type: actions.GET_TMS,
+        payload: { httpResponse: res.data },
       });
+    } catch(err) {
+        console.error("Error:", err);
+      };
   };
 };
 
