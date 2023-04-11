@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { onGetTms, onUptTms } from "../../actions";
+import { onGetTms, onSetStatus } from "../../actions";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -13,18 +13,31 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
+import { onSetModalTm } from "../../actions";
+import DisplayModalTm from "./DisplayModalTm";
+
 const DisplayTimesheet = () => {
   const timesheets = useSelector((state) => state.TimesheetApi);
-  console.log(timesheets);
+  
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(onGetTms());
   }, []);
 
- 
-
-  const handleChange = (id, event) => {
-    dispatch(onUptTms(id, event.target.value));
+  const handleValidate = (id, value) => {
+    
+    if (value == "Approved") {
+      dispatch(onSetModalTm(true));
+      dispatch(onSetStatus({tid:id, status:value}));
+    }
+    else if (value == "Rejected"){
+      dispatch(onSetModalTm(true));
+      dispatch(onSetStatus({tid:id, status:value}));
+    }
+    // if( valMd == true){
+    //   dispatch(onUptTms(id, event.target.value));
+    // }
   };
 
   return (
@@ -52,10 +65,18 @@ const DisplayTimesheet = () => {
                   {timesheet.timesheetId}
                 </TableCell>
                 <TableCell align="center">
-                  {timesheet.startDate.slice(0, 10)}
+                  {new Date(timesheet.startDate).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
                 </TableCell>
                 <TableCell align="center">
-                  {timesheet.endDate.slice(0, 10)}
+                  {new Date(timesheet.endDate).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
                 </TableCell>
                 <TableCell align="center">{timesheet.employeeName}</TableCell>
                 <TableCell align="center">{timesheet.projectName}</TableCell>
@@ -64,10 +85,15 @@ const DisplayTimesheet = () => {
                   <FormControl sx={{ m: 1, minWidth: 100 }}>
                     <Select
                       value={timesheet.status}
-                      onChange={(event) => handleChange(timesheet.tid, event)}
+                      onChange={(event) => handleValidate(timesheet.tid, event.target.value)}
+                      disabled={
+                        timesheet.status === "Approved" ||
+                        timesheet.status === "Rejected"
+                      }
                       displayEmpty
                       inputProps={{ "aria-label": "Without label" }}
                     >
+                      <MenuItem value={"Pending"}>Pending</MenuItem>
                       <MenuItem value={"Approved"}>Approved</MenuItem>
                       <MenuItem value={"Rejected"}>Rejected</MenuItem>
                     </Select>
@@ -78,7 +104,7 @@ const DisplayTimesheet = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      {/* {timesheetList} */}
+      <DisplayModalTm />
     </div>
   );
 };

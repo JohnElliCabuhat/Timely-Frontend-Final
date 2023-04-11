@@ -11,15 +11,10 @@ export const onGetEmp = () => {
     axios
       .request(options)
       .then((res) => {
-        console.log(res);
-        dispatch(
-          ((data) => {
-            return {
-              type: actions.GET_EMP,
-              payload: { httpResponse: data },
-            };
-          })(res.data)
-        );
+        dispatch({
+          type: actions.GET_EMP,
+          payload: { httpResponse: res.data },
+        });
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -28,7 +23,7 @@ export const onGetEmp = () => {
 };
 
 export const onGetTms = () => {
-  const options = {
+  const options =  {
     method: "GET",
     url: "https://localhost:7073/api/capstone/GetTimesheets",
   };
@@ -37,7 +32,6 @@ export const onGetTms = () => {
     axios
       .request(options)
       .then((res) => {
-        console.log(res);
         dispatch({
           type: actions.GET_TMS,
           payload: { httpResponse: res.data },
@@ -108,5 +102,26 @@ export const onUptTms = (id, status) => {
       .catch((err) => {
         console.error("Error:", err);
       });
+  };
+};
+
+export const onSetModal = (val) => {
+  return {
+    type: actions.SET_MODAL,
+    payload: val,
+  };
+};
+
+export const onSetModalTm = (val) => {
+  return {
+    type: actions.SET_MDTM,
+    payload: val,
+  };
+};
+
+export const onSetStatus = (val) => {
+  return {
+    type: actions.SET_STATUS,
+    payload: val,
   };
 };

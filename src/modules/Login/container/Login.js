@@ -1,94 +1,25 @@
-import React, { Component } from "react";
-import { TextField } from "@mui/material";
+import React from 'react';
+import DisplayLogin from '../component/DisplayLogin';
+import { Box } from "@mui/material";
+import { BorderColor } from '@mui/icons-material';
 
-class Login extends Component {
-  state = {
-    username: "",
-    password: "",
-    error: {
-      usernameError: "",
-      passwordError: "",
-    },
-    formValid: false,
-  };
-
-  handleChange = (e) => {
-    if (e.target.id == "username") {
-      this.validateUsername(e.target.value);
-    } else if (e.target.id == "password") {
-      this.validatePassword(e.target.value);
-    }
-  };
-
-  validateUsername = (username) => {
-    let formValid = this.state.formValid;
-    let usernameError = this.state.usernameError;
-
-    if (username.trim() === "") {
-      formValid = false;
-      usernameError = "This field is required";
-    } else {
-      formValid = true;
-      usernameError = "";
-    }
-
-    this.setState({
-      username,
-      formValid,
-      error: { ...this.state.error, usernameError },
-    });
-
-    return formValid;
-  };
-
-  validatePassword = (password) => {
-    let formValid = this.state.formValid;
-    let passwordError = this.state.passwordError;
-
-    if (password.trim() === "") {
-      formValid = false;
-      passwordError = "This field is required";
-    } else {
-      formValid = true;
-      passwordError = "";
-    }
-
-    this.setState({
-      password,
-      formValid,
-      error: { ...this.state.error, passwordError },
-    });
-
-    return formValid;
-  };
-
-  render() {
-    return (
-      <div>
-        <form>
-          <TextField
-            type="text"
-            id="username"
-            label="Username"
-            variant="outlined"
-            onChange={this.handleChange}
-            value={this.state.username}
-          />
-          <p>{this.state.error.usernameError}</p>
-          <TextField
-            type="text"
-            id="password"
-            label="Password"
-            variant="outlined"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-          <p>{this.state.error.passwordError}</p>
-          <button>Login</button>
-        </form>
-      </div>
-    );
-  }
-}
+const drawerWidth = 240;
+const Login = () => {
+  return (
+    <>
+    <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          m: 10,
+          p: 5,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+        }}
+      >
+        <DisplayLogin />
+      </Box>
+    </>
+  );
+};
 
 export default Login;

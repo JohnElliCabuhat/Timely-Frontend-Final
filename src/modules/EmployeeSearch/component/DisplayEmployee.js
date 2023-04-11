@@ -21,9 +21,9 @@ function searchEmp(name) {
 }
 
 const Item = styledGrid(Paper)(({ theme }) => ({
-  backgroundColor: "gray",
+  backgroundColor: "#040c63",
   ...theme.typography.body2,
-  padding: theme.spacing(2),
+  padding: theme.spacing(0.5),
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
@@ -49,7 +49,7 @@ const DisplayEmployee = () => {
         label="Search Name"
         variant="outlined"
         onChange={handleChange}
-        sx={{marginBottom: 10, marginLeft: 20}}
+        sx={{marginBottom: 10, marginLeft: 20, width: "27%"}}
       />
       <Box sx={{ flexGrow: 1, marginLeft: 20 }}>
         <Grid
@@ -62,7 +62,7 @@ const DisplayEmployee = () => {
               <Item>
                 <Card>
                   <CardHeader
-                    title={`Employee Name : ${emp.employeeName}`}
+                    title={emp.employeeName}
                     subheader={`ID : ${emp.employeeId}`}
                   />
                   <CardActions disableSpacing>
@@ -79,7 +79,7 @@ const DisplayEmployee = () => {
                     </IconButton>
                   </CardActions>
                   <Collapse in={selectedEmp == emp.eid}>
-                    <CardContent>
+                    <CardContent sx={{textAlign: "left", marginLeft: 5}}>
                       <p>Contact Number: {emp.contactNumber}</p>
                       <p>Email: {emp.email}</p>
                       <p>Department: {emp.department}</p>
