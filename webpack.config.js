@@ -1,4 +1,5 @@
 const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   output: {
@@ -43,4 +44,5 @@ module.exports = {
   // resolve: {
   //   fallback: { fs: false, crypto: false },
   // },
+  plugins: [new CopyWebpackPlugin({ patterns: [{ from: './web.config', to: '' }] }),]
 };

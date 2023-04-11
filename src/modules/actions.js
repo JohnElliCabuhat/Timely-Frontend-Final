@@ -5,7 +5,7 @@ let BASE_URL_ENV = '';
 
 if (process.env.NODE_ENV === 'development') {
 
- BASE_URL_ENV = 'https://localhost:7208/api/capstone';
+ BASE_URL_ENV = 'https://localhost:7073/api/capstone';
 
 } else if (process.env.NODE_ENV === 'uat') {
 
