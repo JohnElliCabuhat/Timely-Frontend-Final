@@ -65,3 +65,4 @@ const DisplayFaq = () => {
 };
 
 export default DisplayFaq;
+
