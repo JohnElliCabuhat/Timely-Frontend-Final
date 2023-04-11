@@ -35,11 +35,9 @@ const DisplayTimesheet = () => {
       dispatch(onSetModalTm(true));
       dispatch(onSetStatus({tid:id, status:value}));
     }
-    // if( valMd == true){
-    //   dispatch(onUptTms(id, event.target.value));
-    // }
   };
-
+  
+  console.log(timesheets);
   return (
     <div style={{ marginLeft: 100 }}>
       <TableContainer component={Paper}>
@@ -56,7 +54,7 @@ const DisplayTimesheet = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {timesheets.map((timesheet) => (
+            {timesheets.length !== 0 ? timesheets.map((timesheet) => (
               <TableRow
                 key={timesheet.tid}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -100,7 +98,7 @@ const DisplayTimesheet = () => {
                   </FormControl>
                 </TableCell>
               </TableRow>
-            ))}
+            )): <div>No data</div>}
           </TableBody>
         </Table>
       </TableContainer>
