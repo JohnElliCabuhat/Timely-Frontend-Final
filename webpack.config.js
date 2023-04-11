@@ -1,10 +1,12 @@
-const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const path = require("path");
 
 module.exports = {
+  entry: './src/index.js',
   output: {
-    path: path.join(__dirname, "/dist"),
-    filename: "index.bundle.js",
+    path: path.join(__dirname, '/dist'),
+    filename: 'index.bundle.js',
+    publicPath: '/',
   },
   devServer: {
     port: 3000,
@@ -40,9 +42,9 @@ module.exports = {
       },
     ],
   },
-
-  // resolve: {
-  //   fallback: { fs: false, crypto: false },
-  // },
+  resolve: {
+    extensions: ['', '.js', '.jsx', 'css'],
+    fallback: { fs: false, crypto: false },
+  },
   plugins: [new CopyWebpackPlugin({ patterns: [{ from: './web.config', to: '' }] }),]
 };
