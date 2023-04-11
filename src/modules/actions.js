@@ -9,11 +9,11 @@ if (process.env.NODE_ENV === 'development') {
 
 } else if (process.env.NODE_ENV === 'uat') {
 
-BASE_URL_ENV = 'https://elli-capstone-frontend-uat.azurewebsites.net/api/capstone';
+BASE_URL_ENV = 'https://elli-capstone-backend-uat.azurewebsites.net/api/capstone';
 
 } else if (process.env.NODE_ENV === 'prod') {
 
-BASE_URL_ENV = 'https://elli-capstone-frontend-prod.azurewebsites.net/api/capstone';
+BASE_URL_ENV = 'https://elli-capstone-backend-prod.azurewebsites.net/api/capstone';
 
 }
 
