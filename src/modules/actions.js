@@ -20,6 +20,7 @@ export const onGetEmp = () => {
       };
 
       const res = await axios.get(options);
+      console.log(res.data);
       dispatch({
         type: actions.GET_EMP,
         payload: { httpResponse: res.data },
