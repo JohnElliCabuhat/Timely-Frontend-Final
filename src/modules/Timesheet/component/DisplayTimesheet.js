@@ -39,7 +39,16 @@ const DisplayTimesheet = () => {
 
   return (
     <div style={{ marginLeft: 100 }}>
-      <TableContainer component={Paper}>
+      {timesheets.map((tm) => {
+        return(
+          <div key={tm.tid}>
+            <p>{tm.timesheetId}</p>
+            <p>{tm.startDate}</p>
+            <p>{tm.endDate}</p>
+          </div>
+        )
+      })}
+      {/* <TableContainer component={Paper}>
         <Table sx={{ minWidth: 900 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -101,7 +110,7 @@ const DisplayTimesheet = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <DisplayModalTm />
+      <DisplayModalTm /> */}
     </div>
   );
 };
