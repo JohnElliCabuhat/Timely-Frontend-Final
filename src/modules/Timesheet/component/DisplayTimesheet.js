@@ -52,7 +52,7 @@ const DisplayTimesheet = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {timesheets.length !== 0 ? timesheets.map((timesheet) => (
+            {timesheets.length ? (timesheets.map((timesheet) => (
               <TableRow
                 key={timesheet.tid}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -96,7 +96,7 @@ const DisplayTimesheet = () => {
                   </FormControl>
                 </TableCell>
               </TableRow>
-            )): <>No data</>}
+            ))):(<>No data</>)}
           </TableBody>
         </Table>
       </TableContainer>
