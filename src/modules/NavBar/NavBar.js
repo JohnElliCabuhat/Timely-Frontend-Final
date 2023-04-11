@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MoreTimeIcon from "@mui/icons-material/MoreTime";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { images } from "../../assets";
 
 const pages = ["Timesheet", "Search", "Events", "Blogs", "About", "FAQs"];
 const settings = ["Logout"];
@@ -44,7 +45,7 @@ function ResponsiveAppBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{flexGrow: 1, display: { xs: "none", md: "flex" }}}>
-          <img src="/images/TimelyLogo.jpg"/>
+          <img src={images.TimelyLogo}/>
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -89,7 +90,7 @@ function ResponsiveAppBar() {
             </Menu>
           </Box>
           <Box sx={{flexGrow: 1, display: { xs: "flex", md: "none" }, mr: 1 }}>
-          <img src="/images/TimelyLogo.jpg"/>
+          <img src={images.TimelyLogo}/>
           </Box>
           <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -115,7 +116,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Default Profile" src="/images/profile.jpg" />
+                <Avatar alt="Default Profile" src={images.Profile} />
               </IconButton>
             </Tooltip>
             <Menu

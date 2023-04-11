@@ -19,7 +19,6 @@ import DisplayModalTm from "./DisplayModalTm";
 const DisplayTimesheet = () => {
   const timesheets = useSelector((state) => state.TimesheetApi);
   
-  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(onGetTms());
@@ -36,7 +35,7 @@ const DisplayTimesheet = () => {
       dispatch(onSetStatus({tid:id, status:value}));
     }
   };
-  
+
   console.log(timesheets);
   return (
     <div style={{ marginLeft: 100 }}>
@@ -98,7 +97,7 @@ const DisplayTimesheet = () => {
                   </FormControl>
                 </TableCell>
               </TableRow>
-            )): <div>No data</div>}
+            )): <>No data</>}
           </TableBody>
         </Table>
       </TableContainer>

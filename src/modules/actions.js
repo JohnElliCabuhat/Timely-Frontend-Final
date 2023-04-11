@@ -52,6 +52,7 @@ export const onGetTms = () => {
           type: actions.GET_TMS,
           payload: { httpResponse: res.data },
         });
+        console.log(res);
       })
       .catch((err) => {
         console.error("Error:", err);

@@ -5,6 +5,7 @@ import { useAuth } from "../../../ProtectedRoutes";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Paper from '@mui/material/Paper';
+import { images } from "../../../assets";
 
 
 const DisplayLogin = () => {
@@ -24,7 +25,7 @@ const DisplayLogin = () => {
   };
   return (
       <Paper elevation={12} sx={{width:"25%", marginLeft:50, padding:10, paddingTop:5}}>
-        <img src="/images/LogoLogin.jpg" style={{marginLeft:"27%"}} />
+        <img src={images.LogoLogin} style={{marginLeft:"27%"}} />
       {loginError && <div style={{color:"red", margin:10, fontFamily: "sans-serif"}}>{loginError}</div>}
       <form data-testid="submit-form" onSubmit={handleLogin} style={{marginLeft:50}}>
         <div style={{marginBottom:20, marginTop:"10%"}}>

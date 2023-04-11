@@ -10,6 +10,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { images } from "../../../assets";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -30,7 +31,7 @@ const DisplayAbout = () => {
                 <Card sx={{ width: "100%" }}>
                   <CardMedia
                     sx={{ height: 400 }}
-                    image={"images/CEO-Picture.jpg"}
+                    image={images.CEOPicture}
                     title="CEO Picture"
                   />
                   <CardContent>
@@ -49,7 +50,7 @@ const DisplayAbout = () => {
                 <Card sx={{ width: "100%" }}>
                   <CardMedia
                     sx={{ height: 400 }}
-                    image={"images/CFO-Picture.jpg"}
+                    image={images.CFOPicture}
                     title="CFO Picture"
                   />
                   <CardContent>
@@ -68,7 +69,7 @@ const DisplayAbout = () => {
                 <Card sx={{ width: "100%" }}>
                   <CardMedia
                     sx={{ height: 400 }}
-                    image={"images/COO-Picture.jpg"}
+                    image={images.COOPicture}
                     title="COO Picture"
                   />
                   <CardContent>
@@ -95,25 +96,25 @@ const DisplayAbout = () => {
           >
             <Grid item xs={6}>
               <img
-                src={"images/microsoft.jpg"}
+                src={images.Microsoft}
                 style={{ maxWidth: "100%", maxHeight: 150, paddingTop:20 }}
               />
             </Grid>
             <Grid item xs={6}>
               <img
-                src={"images/mysql.jpg"}
+                src={images.MySql}
                 style={{ maxWidth: "100%", maxHeight: 150, paddingBottom:20 }}
               />
             </Grid>
             <Grid item xs={6}>
               <img
-                src={"images/react.jpg"}
+                src={images.ReactLogo}
                 style={{ maxWidth: "100%", maxHeight: 150 }}
               />
             </Grid>
             <Grid item xs={6}>
               <img
-                src={"images/netcore.jpg"}
+                src={images.NetCore}
                 style={{ maxWidth: "100%", maxHeight: 150 }}
               />
             </Grid>
