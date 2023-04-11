@@ -18,6 +18,7 @@ import DisplayModalTm from "./DisplayModalTm";
 
 const DisplayTimesheet = () => {
   const timesheets = useSelector((state) => state.TimesheetApi);
+  console.log(timesheets);
   
   const dispatch = useDispatch();
   useEffect(() => {
