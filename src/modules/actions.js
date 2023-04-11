@@ -1,15 +1,15 @@
 import * as actions from "./actionType";
 import axios from "axios";
 
-let BASE_URL_ENV = "";
+let BASE_URL_ENV = process.env.REACT_API;
 
-if (process.env.NODE_ENV === "development") {
-  BASE_URL_ENV = "https://localhost:7073";
-} else if (process.env.NODE_ENV === "uat") {
-  BASE_URL_ENV = "https://elli-capstone-backend-uat.azurewebsites.net";
-} else if (process.env.NODE_ENV === "production") {
-  BASE_URL_ENV = "https://elli-capstone-backend-prod.azurewebsites.net";
-}
+// if (process.env.NODE_ENV === "development") {
+//   BASE_URL_ENV = "https://localhost:7073";
+// } else if (process.env.NODE_ENV === "uat") {
+//   BASE_URL_ENV = "https://elli-capstone-backend-uat.azurewebsites.net";
+// } else if (process.env.NODE_ENV === "production") {
+//   BASE_URL_ENV = "https://elli-capstone-backend-prod.azurewebsites.net";
+// }
 
 console.log(process.env.NODE_ENV);
 export const onGetEmp = () => {

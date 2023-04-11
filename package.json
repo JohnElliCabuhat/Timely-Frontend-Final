@@ -6,7 +6,9 @@
   "scripts": {
     "serve": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "test": "jest"
+    "test": "jest",
+    "start:uat": "env-cmd -f .env.uat webpack --mode production",
+    "start:prod": "env-cmd -f .env.prod webpack --mode production"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,7 @@
     "axios": "^1.3.4",
     "copy-webpack-plugin": "^11.0.0",
     "date-fns": "^2.29.3",
+    "env-cmd": "^10.1.0",
     "html-webpack-plugin": "^5.5.0",
     "lodash": "^4.17.21",
     "materialize-css": "^1.0.0-rc.2",
