@@ -10,20 +10,13 @@ import Blogs from "./modules/Blogs/container/Blogs";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 
 const Router = () => {
-  // const isAuthenticated = localStorage.getItem("isAuthenticated");
-  // console.log(isAuthenticated);
   return (
     <>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/home" element={<Home />} /> */}
-          {/* <Route element={<ProtectLoginRoute />}> */}
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
-          {/* </Route> */}
-          {/* <Route path="/" element={!isAuthenticated ? <Login /> : <Navigate to="/home" />} /> */}
           <Route element={<ProtectedRoutes />}>
-            {/* <Route path="/" element={<Navigate to="/timesheet" />} /> */}
             <Route path="/timesheet" element={<Timesheet />} />
             <Route path="/search" element={<EmployeeSearch />} />
             <Route path="/events" element={<Events />} />

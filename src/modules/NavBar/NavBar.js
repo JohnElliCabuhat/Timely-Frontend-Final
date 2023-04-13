@@ -11,7 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import MoreTimeIcon from "@mui/icons-material/MoreTime";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { images } from "../../assets";
@@ -22,7 +21,6 @@ const settings = ["Logout"];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

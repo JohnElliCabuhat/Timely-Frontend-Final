@@ -44,6 +44,7 @@ const DisplayLogin = () => {
           label="Password"
           type="password"
           autoComplete="current-password"
+         
           onChange={(e) => setPassword(e.target.value)}
         />
         </div>

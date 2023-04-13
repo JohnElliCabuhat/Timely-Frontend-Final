@@ -13,11 +13,5 @@ export const useAuth = (userInput, passInput) => {
 export const ProtectedRoutes = () => {
     const checkAuth = localStorage.getItem("isAuth");
     return checkAuth=="true" ? <Outlet /> : <Navigate to="/login" />;
-
-
-
-    // const isAuthenticated = localStorage.getItem("isAuthenticated");
-    // const checkAuth = isAuthenticated ? JSON.parse(isAuthenticated).checkAuth : false;
-
 };
 

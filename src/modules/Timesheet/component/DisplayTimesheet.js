@@ -99,8 +99,7 @@ const DisplayTimesheet = () => {
                   </TableCell>
                 </TableRow>
               ))
-            ) : (
-              <>No data</>
+            ) : ([]
             )}
           </TableBody>
         </Table>
