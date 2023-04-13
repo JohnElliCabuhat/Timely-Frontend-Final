@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { images } from "../../assets";
 
-const pages = ["Home","Timesheet", "Search", "Events", "Blogs", "About", "FAQs"];
+const pages = ["Timesheet", "Search", "Events", "Blogs", "About", "FAQs"];
 const settings = ["Logout"];
 
 function ResponsiveAppBar() {
