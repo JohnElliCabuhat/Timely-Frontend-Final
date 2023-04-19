@@ -3,6 +3,9 @@ import axios from "axios";
 
 let BASE_URL_ENV = process.env.REACT_API;
 
+//for dev
+// let BASE_URL_ENV = "https://localhost:7073";
+
 console.log(process.env.NODE_ENV);
 export const onGetEmp = () => {
   return async (dispatch) => {

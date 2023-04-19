@@ -10,6 +10,8 @@ import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useTheme } from "@mui/material/styles";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "white",
@@ -17,65 +19,87 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(0),
   textAlign: "justify",
   color: theme.palette.text.secondary,
+  [theme.breakpoints.down("sm")]: {
+    textAlign: "left",
+  },
 }));
 
 const DisplayEvents = () => {
-  const events = useSelector(state => state.EventsApi);
+  const events = useSelector((state) => state.EventsApi);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(onGetEvt());
   }, []);
 
+  const theme = useTheme();
+
   return (
     <div>
-      <Box sx={{ width: "100%", marginLeft: 10 }}>
+      <Box
+        sx={{
+          width: "100%",
+          marginLeft: 10,
+          [theme.breakpoints.down("sm")]: {
+            marginLeft: 0,
+          },
+        }}
+      >
         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {events.length ? (events.map((evt) => (
-            <Grid item xs={6} key={evt.evid}>
-              <Item>
-                <Card sx={{ width: "100%" }}>
-                  <CardActionArea
-                    href={evt.eventLink}
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <CardMedia
-                      component="img"
-                      height="140"
-                      image={evt.eventImage}
-                      alt="event photo"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div" sx={{fontWeight: "bold"}}>
-                        {evt.eventName}
-                      </Typography>
-                      <p style={{ textAlign: "justify" }}>
-                        {new Date(evt.eventDate).toLocaleDateString("en-US", {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
-                      </p>
-                      <Typography variant="body2" color="text.secondary">
-                        {evt.eventDescription}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions>
-                    <Button
-                      size="small"
+          {events.length ? (
+            events.map((evt) => (
+              <Grid item xs={6} key={evt.evid}>
+                <Item>
+                  <Card sx={{ width: "100%" }}>
+                    <CardActionArea
                       href={evt.eventLink}
                       target="_blank"
                       rel="noopener"
-                      sx={{color: "#040c63"}}
                     >
-                      Learn More
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Item>
-            </Grid>
-          ))) : (<>No Data</>)}
+                      <CardMedia
+                        component="img"
+                        height="140"
+                        image={evt.eventImage}
+                        alt="event photo"
+                      />
+                      <CardContent>
+                        <Typography
+                          gutterBottom
+                          variant="h5"
+                          component="div"
+                          sx={{ fontWeight: "bold" }}
+                        >
+                          {evt.eventName}
+                        </Typography>
+                        <p style={{ textAlign: "justify" }}>
+                          {new Date(evt.eventDate).toLocaleDateString("en-US", {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </p>
+                        <Typography variant="body2" color="text.secondary">
+                          {evt.eventDescription}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <Button
+                        size="small"
+                        href={evt.eventLink}
+                        target="_blank"
+                        rel="noopener"
+                        sx={{ color: "#040c63" }}
+                      >
+                        Learn More
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Item>
+              </Grid>
+            ))
+          ) : (
+            <CircularProgress />
+          )}
         </Grid>
       </Box>
     </div>

@@ -16,8 +16,12 @@ import Select from "@mui/material/Select";
 import { onSetModalTm } from "../../actions";
 import DisplayModalTm from "./DisplayModalTm";
 
+import CircularProgress from "@mui/material/CircularProgress";
+
+import { useTheme } from "@mui/material/styles";
+
 const DisplayTimesheet = () => {
-  const timesheets = useSelector(state => state.TimesheetApi);
+  const timesheets = useSelector((state) => state.TimesheetApi);
   console.log(timesheets);
 
   const dispatch = useDispatch();
@@ -35,10 +39,20 @@ const DisplayTimesheet = () => {
     }
   };
 
+  const theme = useTheme();
+
   return (
-    <div style={{ marginLeft: 100 }}>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 900 }} aria-label="simple table">
+    <div>
+      <TableContainer
+        component={Paper}
+        sx={{
+          marginLeft: 10,
+          [theme.breakpoints.down("sm")]: {
+            marginLeft: 0,
+          },
+        }}
+      >
+        <Table sx={{ minWidth: "100%" }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Timesheet ID</TableCell>
@@ -99,7 +113,8 @@ const DisplayTimesheet = () => {
                   </TableCell>
                 </TableRow>
               ))
-            ) : ([]
+            ) : (
+              <CircularProgress />
             )}
           </TableBody>
         </Table>

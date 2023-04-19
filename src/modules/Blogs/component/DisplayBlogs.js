@@ -10,6 +10,8 @@ import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useTheme } from "@mui/material/styles";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "white",
@@ -17,47 +19,64 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(0),
   textAlign: "justify",
   color: theme.palette.text.secondary,
+  [theme.breakpoints.down("sm")]: {
+    textAlign: "left",
+  },
 }));
 
 const DisplayBlogs = () => {
-  const blogs = useSelector(state => state.BlogsApi);
+  const blogs = useSelector((state) => state.BlogsApi);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(onGetBlg());
   }, []);
 
+  const theme = useTheme();
+
   return (
     <div>
-      <Box sx={{ width: "100%", marginLeft: 10 }}>
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {blogs.length ? (blogs.map((blg) => (
-            <Grid item xs={6} key={blg.bid}>
-              <Item>
-                <Card sx={{ width: "100%" }}>
-                  <CardActionArea
-                    href={blg.blogLink}
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <CardMedia
-                      component="img"
-                      height="140"
-                      image={blg.blogImage}
-                      alt="event photo"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {blg.blogTitle}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {blg.blogDescription}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Item>
-            </Grid>
-          ))) : (<>No Data</>)}
+      <Box
+        sx={{
+          width: "100%",
+          marginLeft: 10,
+          [theme.breakpoints.down("sm")]: {
+            marginLeft: 0,
+          },
+        }}
+      >
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 3, md: 3 }}>
+          {blogs.length ? (
+            blogs.map((blg) => (
+              <Grid item xs={6} key={blg.bid}>
+                <Item>
+                  <Card sx={{ width: "100%" }}>
+                    <CardActionArea
+                      href={blg.blogLink}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <CardMedia
+                        component="img"
+                        height="140"
+                        image={blg.blogImage}
+                        alt="event photo"
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {blg.blogTitle}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {blg.blogDescription}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Item>
+              </Grid>
+            ))
+          ) : (
+            <CircularProgress />
+          )}
         </Grid>
       </Box>
     </div>
